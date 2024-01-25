@@ -1,4 +1,4 @@
-package com.team_zootopia.backend_zootopia.config;
+ package com.team_zootopia.backend_zootopia.config;
 
 import java.util.Arrays;
 
