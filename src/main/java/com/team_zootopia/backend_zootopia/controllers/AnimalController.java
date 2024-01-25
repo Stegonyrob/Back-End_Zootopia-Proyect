@@ -8,10 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team_zootopia.backend_zootopia.models.Animal;
+
 import com.team_zootopia.backend_zootopia.services.IAnimalService;
 @RestController
 @RequestMapping(path = "${api-endpoint}/animals")
@@ -30,4 +34,15 @@ public class AnimalController {
                 .map(animal -> ResponseEntity.ok().body(animal))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @PostMapping
+    public Animal addAnimal(@RequestBody Animal animal) {
+        return animalService.save(animal);
+    }
+    @PutMapping("/{id}")
+    public Animal editAnimal(@PathVariable Long id, @RequestBody Animal animal) {
+        animal.setId(id);
+        return animalService.update(animal);
+    }
+    
 }

@@ -45,5 +45,12 @@ public Optional<Animal> findById(Long id){
         return (Animal) animalRepository.save(animal);
     }
 
+    @Override
+    public Animal update(Animal animal) {
+        Objects.requireNonNull(animal, "Animal cannot be null");
+        return animalRepository.save(animal);
+    }
+    
+
    
 }
